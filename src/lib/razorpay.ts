@@ -1,3 +1,7 @@
+// Razorpay Key ID — override via VITE_RAZORPAY_KEY_ID env var, otherwise falls back to placeholder
+export const RAZORPAY_KEY_ID: string =
+  (import.meta.env.VITE_RAZORPAY_KEY_ID as string | undefined) ?? ''
+
 // Slot pricing in paise (1 INR = 100 paise)
 export const SLOT_PRICES: Record<string, number> = {
   day:   70000,  // ₹700  — 6 AM to 6 PM

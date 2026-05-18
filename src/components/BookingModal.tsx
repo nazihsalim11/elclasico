@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { X, Loader2, ShieldCheck } from 'lucide-react'
 import { FUNCTIONS_URL } from '../lib/supabase'
-import { loadRazorpayScript, priceForSlot, formatINR, type RazorpayResponse } from '../lib/razorpay'
+import { loadRazorpayScript, priceForSlot, formatINR, RAZORPAY_KEY_ID, type RazorpayResponse } from '../lib/razorpay'
 
 interface BookingModalProps {
   open: boolean
@@ -66,7 +66,7 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
       // 2. Open Razorpay checkout
       const RazorpayConstructor = window.Razorpay!
       const rzp = new RazorpayConstructor({
-        key:         data.key_id ?? '',
+        key:         data.key_id ?? RAZORPAY_KEY_ID,
         amount:      data.amount ?? amountPaise,
         currency:    'INR',
         name:        'El Clasico Turf',
