@@ -45,6 +45,13 @@ export interface RazorpayOptions {
   theme:       { color: string }
   handler:     (response: RazorpayResponse) => void
   modal?:      { ondismiss?: () => void }
+  config?:     {
+    display?: {
+      blocks?: Record<string, { name: string; instruments: { method: string }[] }>
+      sequence?: string[]
+      preferences?: { show_default_blocks?: boolean }
+    }
+  }
 }
 
 export interface RazorpayResponse {

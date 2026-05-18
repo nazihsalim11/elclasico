@@ -74,6 +74,16 @@ export default function BookingModal({ open, onClose }: BookingModalProps) {
         order_id:    data.order_id ?? '',
         prefill:     { name: form.name, contact: form.phone },
         theme:       { color: '#c5f135' },
+        config: {
+          display: {
+            blocks: {
+              banks: { name: 'Pay via UPI', instruments: [{ method: 'upi' }] },
+              other: { name: 'Other methods', instruments: [{ method: 'card' }, { method: 'netbanking' }, { method: 'wallet' }] },
+            },
+            sequence: ['block.banks', 'block.other'],
+            preferences: { show_default_blocks: false },
+          },
+        },
         handler:     async (response: RazorpayResponse) => {
           // 3. Verify signature on the server
           const vRes = await fetch(`${FUNCTIONS_URL}/verify-razorpay-payment`, {
